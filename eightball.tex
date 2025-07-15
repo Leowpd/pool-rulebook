@@ -4,7 +4,6 @@
 \fancytitle[images/8ball.png]{8-Ball Pool}
 
 \section{Object of the Game} \label{8ball:description}
-see \hyperref[8ball:description]{Section \ref*{8ball:description}}
 
 \section{Format of Games} \label{8ball:format}
 \ex. Games are generally played in a best-of-one, best-of-three, or best-of-seven format.\itemspace
@@ -14,15 +13,9 @@ see \hyperref[8ball:description]{Section \ref*{8ball:description}}
 \par
 
 \section{Racking} \label{8ball:racking}
-\ex. Racking up the balls involves setting all 15 balls up in the standard triangle formation for the opponent to break. The opponent is encouraged to make sure the rack is tight.\par
+\ex. \RackingUp[8ball]\par
 \ex. \label{8ball:challengerracks}\DetermineWhoRacks\par
-\ex. \label{8ball:rackpos}Formation and Position of Rack:
-    \begin{figure}[!h]
-        \raggedleft
-        \includegraphics[width=0.4315\textwidth]{images/table_diagram.png}
-        \hspace{-1.7mm}
-        \label{8ball:fig1}
-    \end{figure}\\
+\ex. \label{8ball:rackpos}\TableDiagram[8ball]\\
 \fixedlabel{2.3.1}The 15 numbered balls are racked in a triangle with the black/8-ball in the centre (i.e., middle of the third row). Other than the black/8-ball, there is no required pattern for the order of the balls.\itemspace
 \fixedlabel{2.3.2}\TightlyPacked\itemspace
 \fixedlabel{2.3.3}\RackPlacement[8ball]\itemspace
@@ -37,10 +30,11 @@ see \hyperref[8ball:description]{Section \ref*{8ball:description}}
 \ex. \CueBallMissOffBreak[8ball]\par
 \ex. \CueBallRailOffBreak\par
 \ex. \CueBallSinkOffBreak\par
-\ex. \BallOffTableFromBreak\ See \hyperref[8ball:ballofftable]{Section \ref*{8ball:ballofftable}.10} for returning the balls to the table.\par
-\ex. If a coloured ball is sunk off the break, that set is the player's balls (i.e., overs or unders). The player can then take their next shot.\par
-\ex. If multiple coloured balls from different sets are sunk off the break, the player chooses which set to play. The player can then take their next shot.\par
-\ex. \label{8ball:breakingnoballs}If no balls are sunk off the break:\itemspace
+\ex. If any balls are knocked off the table during the break, this is a foul. If it the black/8-ball, the player loses. See \hyperref[8ball:ballofftable]{Section \ref*{8ball:ballofftable}.11} for returning the balls to the table.\par
+\ex. If the black/8-ball sinks off the break, this is an instant loss for the player.\par
+\ex. If a coloured ball (or multiple coloured balls of the same set) sinks off the break, that set is the player's balls (i.e., overs or unders). The player can then take their next shot.\par
+\ex. If multiple coloured balls from different sets sink off the break, the player chooses which set to play. The player can then take their next shot.\par
+\ex. \label{8ball:breakingnoballs}If no balls sink off the break:\itemspace
 \fixedlabel{3.10.1}At this stage, neither player has a set that belongs to them. The players will alternate turns to hit any coloured ball (not the black/8-ball) until a ball is sunk and sets are assigned.\itemspace
 \fixedlabel{3.10.2}If the black/8-ball is hit first, this is a foul.\itemspace
 \fixedlabel{3.10.3}If multiple balls from different sets are sunk off the same shot, whichever went in first is the set assigned to the player. If neither player saw which ball sunk first, the player chooses their set. No foul is awarded and the player can continue their turn.
@@ -53,7 +47,7 @@ see \hyperref[8ball:description]{Section \ref*{8ball:description}}
 \ex. The player must strike the cue ball with at least one foot on the floor. “Tippy toes” are permissible.\par
 \ex. If the opponent fouled on their turn, then the player gets an additional shot (see \hyperref[8ball:fouling]{Section \ref*{8ball:fouling}} for more on fouls).\par
 \ex. If a player sinks all of their coloured balls, they can now hit the black/8-ball with the cue ball directly.\par
-\ex. \AlternateTurns[8ball]
+\ex. \AlternateTurns[8ball]\par
 
 \placeframe{2}
 
@@ -71,9 +65,9 @@ see \hyperref[8ball:description]{Section \ref*{8ball:description}}
 \fixedlabel{5.3.8}The cue ball is meant to be in the D, but the player strikes it while it is outside the D (reasonable allowances are made if it's only outside by a few milimetres).\itemspace
 \fixedlabel{5.3.9}\PushShot\itemspace
 \fixedlabel{5.3.10}\ObjectBallTouch\itemspace
-\fixedlabel{5.3.11}\label{8ball:ballofftable}\BallOffTable\\
+\fixedlabel{5.3.11}\phantomsection\label{8ball:ballofftable}\BallOffTable\\
                    \hspace*{1.74em}$\bullet$\hspace*{0.0em} If it is the cue ball, the opponent takes \hspace*{2.68em}their shot from the D.\\%
-                   \hspace*{1.74em}$\bullet$\hspace*{0.15em} If it is a coloured ball, the players attempt \hspace*{2.68em}to place it as close to the black dot as pos- \hspace*{2.68em}sible (see \hyperref[8ball:rackpos]{Section \ref*{8ball:rackpos}} for the location of \hspace*{2.68em}the black dot). This also applies if multi- \hspace*{2.68em}ple coloured balls are knocked off the ta-\hspace*{2.68em}ble.\\%
+                   \hspace*{1.74em}$\bullet$\hspace*{0.15em} If it is a coloured ball, the players attempt \hspace*{2.68em}to place it as close to the foot spot as pos- \hspace*{2.68em}sible (see \hyperref[8ball:rackpos]{Section \ref*{8ball:rackpos}} for the location of \hspace*{2.68em}the foot spot). This also applies if multi- \hspace*{2.68em}ple coloured balls are knocked off the ta-\hspace*{2.68em}ble.\\%
                    \hspace*{1.74em}$\bullet$\hspace*{0.15em} If it is the black/8-ball, the player loses.\itemspace
 \fixedlabel{5.3.12}\JumpShot\itemspace
 %\fixedlabel{5.3.12}If the optional jump shot rule laid out in Section X.X is in place, illegal jump shots are considered a foul. An illegal jump shot is “scooping” the cue ball from underneath or if the cue touches the table during the shot.\itemspace
@@ -129,10 +123,11 @@ see \hyperref[8ball:description]{Section \ref*{8ball:description}}
 \ex. After the break, players from each team play alternate turns.\par
 \ex. Teammates are not allowed to switch turns during a game. Switching turns between games (e.g., in a best-of-three) is allowed.\par
 
-\section{Etiquette and Behaviour} \label{8ball:etiquette}
+\section{Etiquette and Behaviour} \label{8ball:etiquette}  % potentially move this section to the appendix
 \ex. \label{8ball:misleading}\Misleading\par
 \ex. \DistractingWhileSettingUp\par
 \ex. \DistractingWhileStriking\par
 \ex. \label{8ball:sportsmanship}\Sportsmanship\par
 
 \placeframe{4}
+
