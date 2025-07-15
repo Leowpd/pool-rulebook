@@ -3,39 +3,71 @@
 \usepackage{titlesec}
 \usepackage{lipsum} % for dummy text
 \usepackage{hyperref}
+\usepackage{etoolbox}
 
 
 \newcommand{\itemspace}{\vspace{1.2mm}\\}
 
-% === Counters ===
+
+% === Rule Counters ===
 \newcounter{ruleitem}[section]
 \renewcommand{\theruleitem}{\thesection.\arabic{ruleitem}}
 
 \newcounter{subruleitem}[ruleitem]
 \renewcommand{\thesubruleitem}{\thesection.\arabic{ruleitem}.\arabic{subruleitem}}
 
-% === Ruleitem command (for 4.1., 4.2., etc.) ===
+\newcommand{\ruleindent}{3em}               % indent of rule items
+\newcommand{\subruleindent}{3.5em}          % indent of subrule items
+\newcommand{\rulegap}{0.5\baselineskip}     % gap between rules
+\newcommand{\subrulegap}{0.3\baselineskip}  % gap between subrules
+
+% === Rule item ===
 \newcommand{\ruleitem}{%
-  \par\refstepcounter{ruleitem}%
-  \setcounter{subruleitem}{0}% reset tertiary when a new rule starts
-  \hangindent=3em
+  \refstepcounter{ruleitem}%
+  \setcounter{subruleitem}{0}%
+  \ifnum\value{ruleitem}=1
+    \par % No vertical gap before the first rule
+  \else
+    \par\vspace{\rulegap}%
+  \fi
+  \hangindent=\ruleindent
   \hangafter=1
-  \noindent\makebox[3em][l]{\textbf{\theruleitem.}}%
+  \noindent\makebox[\ruleindent][l]{\textbf{\theruleitem}}%
 }
 
-% === Subruleitem command (for 4.1.1., 4.1.2., etc.) ===
+% === Subrule item ===
+% Entire block (number and text) indented to align with rule
 \newcommand{\subruleitem}{%
-  \par\refstepcounter{subruleitem}%
-  \hangindent=5em
+  \par\vspace{\subrulegap}%
+  \refstepcounter{subruleitem}%
+  \noindent\hspace*{\ruleindent}% 
+  \hangindent=\ruleindent
   \hangafter=1
-  \noindent\makebox[5em][l]{\textbf{\thesubruleitem.}}%
+  \makebox[\subruleindent][l]{\textbf{\thesubruleitem}}%
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 \begin{document}
+
+
+
+
+
+
+
 
 \section{General Play} \label{8ball:general}
 

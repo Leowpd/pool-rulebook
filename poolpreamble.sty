@@ -15,14 +15,13 @@
 \usepackage{xparse}
 \usepackage{import}
 \usepackage{chngcntr}
+\usepackage{titlesec}
+\usepackage{etoolbox}
 
 
 
-\def\PageTopMargin{2cm}
-\def\PageLeftMargin{2cm}
-\newcommand\atxy[3]{%
- \AddThispageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
-  \raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
+
+
 
 
 \counterwithin{ExNo}{section}
@@ -32,11 +31,62 @@
 
 \newcommand{\fixedlabel}[1]{\textbf{\makebox[3.5em][l]{#1}}}
 
-% \setlength{\Extopsep}{.66\baselineskip}
-% \newlength{\testspace}
-% \setlength{\itemspace}{.66\baselineskip}
+
+
+
+
+% === Rule Counters ===
+\newcounter{ruleitem}[section]
+\renewcommand{\theruleitem}{\thesection.\arabic{ruleitem}}
+
+\newcounter{subruleitem}[ruleitem]
+\renewcommand{\thesubruleitem}{\thesection.\arabic{ruleitem}.\arabic{subruleitem}}
+
+\newcommand{\ruleindent}{3em}               % indent of rule items
+\newcommand{\subruleindent}{3.5em}          % indent of subrule items
+\newcommand{\rulegap}{0.5\baselineskip}     % gap between rules
+\newcommand{\subrulegap}{0.3\baselineskip}  % gap between subrules
+
+% === Rule item ===
+\newcommand{\ruleitem}{%
+  \refstepcounter{ruleitem}%
+  \setcounter{subruleitem}{0}%
+  \ifnum\value{ruleitem}=1
+    \par % No vertical gap before the first rule
+  \else
+    \par\vspace{\rulegap}%
+  \fi
+  \hangindent=\ruleindent
+  \hangafter=1
+  \noindent\makebox[\ruleindent][l]{\textbf{\theruleitem}}%
+}
+
+% === Subrule item ===
+% Entire block (number and text) indented to align with rule
+\newcommand{\subruleitem}{%
+  \par\vspace{\subrulegap}%
+  \refstepcounter{subruleitem}%
+  \noindent\hspace*{\ruleindent}% 
+  \hangindent=\ruleindent
+  \hangafter=1
+  \makebox[\subruleindent][l]{\textbf{\thesubruleitem}}%
+}
 
 \newcommand{\itemspace}{\vspace{1.2mm}\\}
+
+
+
+
+
+
+
+
+\def\PageTopMargin{2cm}
+\def\PageLeftMargin{2cm}
+\newcommand\atxy[3]{%
+ \AddThispageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
+  \raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
+
 \newcommand{\placeframe}[1]{\atxy{-0.5cm}{29.1cm}{\includegraphics[scale=0.3353]{images/frame#1}}}
 
 \newsavebox{\titlebox}
