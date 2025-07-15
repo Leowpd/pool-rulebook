@@ -1,0 +1,92 @@
+\ProvidesPackage{poolpreamble}
+
+\usepackage[paper=a4paper, centering, margin=2cm]{geometry}
+\usepackage{pgfornament}
+\usepackage{everypage}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{linguex}
+\usepackage{glossaries}
+\usepackage{array}
+\usepackage{nopageno}
+\usepackage{hyperref}
+\usepackage{fouriernc} % Use the New Century Schoolbook font
+\usepackage{xparse}
+\usepackage{import}
+\usepackage{chngcntr}
+
+
+
+\def\PageTopMargin{2cm}
+\def\PageLeftMargin{2cm}
+\newcommand\atxy[3]{%
+ \AddThispageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
+  \raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
+
+
+\counterwithin{ExNo}{section}
+\renewcommand{\ExLBr}{\bfseries}
+\renewcommand{\ExRBr}{}
+\renewcommand{\Exarabic}{\thesection.\arabic} 
+
+\newcommand{\fixedlabel}[1]{\textbf{\makebox[3.5em][l]{#1}}}
+
+% \setlength{\Extopsep}{.66\baselineskip}
+% \newlength{\testspace}
+% \setlength{\itemspace}{.66\baselineskip}
+
+\newcommand{\itemspace}{\vspace{1.2mm}\\}
+\newcommand{\placeframe}[1]{\atxy{-0.5cm}{29.1cm}{\includegraphics[scale=0.3353]{images/frame#1}}}
+
+\newsavebox{\titlebox}
+
+\newcommand{\fancytitle}[2][]{%
+  \twocolumn[%
+    {%
+      \centering
+      \setlength{\fboxsep}{0pt}%
+      \begin{minipage}{\linewidth}
+        \centering
+
+        % Measure the height and depth of the title text
+        \sbox{\titlebox}{\Huge\textcolor{titlegreen}{#2}}%
+
+        % Title text
+        \textcolor{titlegreen}{\Huge #2}%
+        % Optional image
+        \ifx&#1&%
+          % No image
+        \else
+          \hspace{1em}%
+          \raisebox{%
+            0.5\dimexpr(\ht\titlebox + \dp\titlebox - 1.5\ht\titlebox)
+          }{%
+            \includegraphics[height=1.5\ht\titlebox]{#1}%
+          }%
+        \fi
+
+        \vspace{0.4em}
+
+        \par\noindent\rule{0.9\linewidth}{0.4pt}
+      \end{minipage}
+
+      \vspace{1em}
+    }
+  ]%
+  \setcounter{section}{-1}
+}
+
+
+\definecolor{titlegreen}{RGB}{12, 86, 65}
+\definecolor{pooltablegreen}{RGB}{98, 166, 111}  % same colour as the pool table diagram
+
+\title{Pilaar Duncan Pool House Rules}
+\author{Leo Duncan}
+
+\hypersetup{
+    pdftitle={Pool Rulebook},
+    pdfsubject={The Pilaar Duncan Family Pool Rules are the house rules for pool developed by and for the Pilaar Duncan family.},
+    pdfauthor={Leo Duncan},
+    allbordercolors={pooltablegreen}
+}
