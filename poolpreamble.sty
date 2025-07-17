@@ -24,6 +24,26 @@
 % ================================================================== %
 
 
+% === Ensures the same label can't be used twice, creating hidden problems ===
+\makeatletter
+\newcommand{\uniquelabel}[1]{%
+  \@ifundefined{UL@#1}{%
+    \expandafter\gdef\csname UL@#1\endcsname{}%
+    \label{#1}%
+  }{%
+    \PackageError{uniquelabel}{Duplicate label `#1'}{%
+      You tried to use the label `#1' more than once.\MessageBreak
+      Labels must be unique to avoid incorrect references.%
+    }%
+  }%
+}
+\makeatother
+
+
+% === Simplier hyperref ===
+\newcommand{\ruleref}[1]{\hyperref[#1]{Section \ref*{#1}}}
+
+
 % === Rule Counters ===
 \newcounter{ruleitem}[section]
 \renewcommand{\theruleitem}{\thesection.\arabic{ruleitem}}
@@ -39,11 +59,11 @@
 \newlength{\subruleindent}
 \setlength{\subruleindent}{12mm}           % indent of subrule items
 
-\newlength{\subsubrulebulletindent}
-\setlength{\subsubrulebulletindent}{5.5mm} % indent of subsubrule items (relative to the text of the rule items)
-
 \newlength{\subsubruletextindent}
 \setlength{\subsubruletextindent}{3.5mm}   % indent of subsubrule items (relative to the bullet point)
+
+\newlength{\subsubrulebulletindent}
+\setlength{\subsubrulebulletindent}{\subruleindent-\subsubruletextindent+0.25mm} % indent of subsubrule items (relative to the text of the rule items)
 
 \newlength{\rulegap}
 \setlength{\rulegap}{2mm}                  % gap between rules
@@ -51,38 +71,43 @@
 \newlength{\subrulegap}
 \setlength{\subrulegap}{1.2mm}             % gap between subrules
 
+\newlength{\subsubrulegap}
+\setlength{\subsubrulegap}{0.8mm}          % gap between subsubrules
+
 
 % === Rule item ===
-\newcommand{\ruleitem}{%
+\NewDocumentCommand{\ruleitem}{o}{%
+  \par % <-- ensures we're in vertical mode
   \refstepcounter{ruleitem}%
+  \IfValueT{#1}{\uniquelabel{#1}}%
   \setcounter{subruleitem}{0}%
   \ifnum\value{ruleitem}=1
-    \par % No vertical gap before the first rule
+    % No gap before the first rule
   \else
-    \par\vspace{\rulegap}%
+    \vspace{\rulegap}%
   \fi
   \hangindent=\ruleindent
   \hangafter=1
   \noindent\makebox[\ruleindent][l]{\textbf{\theruleitem}}%
-}%
-
+}
 
 % === Subrule item ===
-% Entire block (number and text) indented to align with rule
-\newcommand{\subruleitem}{%
-  \par\vspace{\subrulegap}%
+\NewDocumentCommand{\subruleitem}{o}{%
+  \par % Ensure we're in vertical mode so label anchor is placed correctly
+  \vspace{\subrulegap}%
   \refstepcounter{subruleitem}%
+  \IfValueT{#1}{\uniquelabel{#1}}%
   \noindent\hspace*{\ruleindent}% 
   \hangindent=\ruleindent
   \hangafter=1
   \makebox[\subruleindent][l]{\textbf{\thesubruleitem}}%
 }
 
-
 % === subsubrule item ===
 % tertiary section, each subsubrule is a bullet point indented from the higher subrule
-\newcommand{\subsubruleitem}{%
-  \par\vspace{-\parskip}%
+\NewDocumentCommand{\subsubruleitem}{o}{%
+  \par\vspace{-\parskip+\subsubrulegap}%
+  \IfValueT{#1}{\uniquelabel{#1}}%% references current subrule counter
   \noindent
   \hspace*{\dimexpr\ruleindent+\subsubrulebulletindent\relax}%
   \hangindent=\dimexpr
@@ -110,6 +135,7 @@
     {large}{\vspace{\rulegap}\\}%
   }[\vspace{\subrulegap}\\] % default if unknown option
 }
+
 
 
 % ================================================================== %
