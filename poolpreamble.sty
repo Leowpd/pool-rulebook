@@ -104,8 +104,12 @@
 %
 
 % === Standard space used instead of paragraphs, same vertical space as \subrulegap ===
-\newcommand{\standardspace}{\vspace{\subrulegap}\\}
-
+\NewDocumentCommand{\standardspace}{O{small}}{%
+  \IfEqCase{#1}{%
+    {small}{\vspace{\subrulegap}\\}%
+    {large}{\vspace{\rulegap}\\}%
+  }[\vspace{\subrulegap}\\] % default if unknown option
+}
 
 
 % ================================================================== %
@@ -126,6 +130,18 @@
 % e.g. to place the frame for page 4, do \placeframe{4}. Only works up until 15. If in future we need more than 15 pages maybe add the solid coloured snooker balls.
 
 
+% === Places the appropriate frame on every page unless otherwise specified (used on titlepage) ===
+\newif\ifuseframe
+\useframetrue
+
+\AddEverypageHook{%
+  \ifuseframe
+    \edef\realpage{\number\value{page}}%
+    \expandafter\placeframe\expandafter{\realpage}%
+  \fi
+}
+
+
 % === Title for e.g. "8-Ball Pool", "Appendices", etc ===
 \newsavebox{\titlebox}
 \newcommand{\fancytitle}[2][]{%
@@ -136,7 +152,7 @@
       \begin{minipage}{\linewidth}
         \centering
 
-        % Measure the height and depth of the title text
+        % Measure the height (ignoring depth) of the title text
         \sbox{\titlebox}{\Huge\textcolor{titlegreen}{#2}}%
 
         % Title text
@@ -146,9 +162,7 @@
           % No image
         \else
           \hspace{1em}%
-          \raisebox{%
-            0.5\dimexpr(\ht\titlebox + \dp\titlebox - 1.5\ht\titlebox)
-          }{%
+          \raisebox{-0.25\ht\titlebox}{%
             \includegraphics[height=1.5\ht\titlebox]{#1}%
           }%
         \fi
@@ -161,7 +175,7 @@
       \vspace{1em}
     }
   ]%
-  \setcounter{section}{-1}
+  \setcounter{section}{0}
 }
 
 
