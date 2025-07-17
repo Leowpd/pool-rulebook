@@ -3,7 +3,7 @@
 \usepackage{xstring}
 \usepackage{ifthen}
 
-% Racking
+% === Racking ===
 \newcommand{\RackingUp}[1][8ball]{%
     \begingroup
     \def\numballs{}%
@@ -70,7 +70,7 @@
     }%
     The opponent breaking may inspect the rack for gaps and the position of the \balls, but may not complain about the pattern of the coloured balls.\endgroup}
 %
-% Breaking
+% === Breaking ===
 \newcommand{\CueBallPlacement}{The player breaking places the cue ball in the D.}  % If playing on a table without a D, the cue ball should be placed behind the head string.  % note that including this also means that a rule needs to be added for the case when the cue ball is supposed to be behind the headstring (and also is it a common rule that in this case the player may only shoot forwards??). As we never play this rule it seems like it doesn't fit adding it to the family ruleset.
 \newcommand{\CueBallMissOffBreak}[1][8ball]{%
     \begingroup
@@ -87,7 +87,7 @@
 \newcommand{\CueBallRailOffBreak}{If the cue ball hits a rail before hitting the rack, this is a foul.}
 \newcommand{\CueBallSinkOffBreak}{If the cue ball hits the rack and ends up sinking, this is a foul.}
 %
-% General Play
+% === General Play ===
 \newcommand{\AlternateTurns}[1][8ball]{%
     \begingroup
     \def\endsection{}%
@@ -100,7 +100,7 @@
     }%
     The players alternate turns until the game is ended. See \hyperref[\endsection]{Section \ref*{\endsection}} for the ending of the game.\endgroup}
 %
-% Fouling
+% === Fouling ===
 \newcommand{\CueBallMiss}{The cue ball does not hit any ball.}
 \newcommand{\CueBallSink}{The player sinks the cue ball.}
 \newcommand{\CueBallRail}{During the break the cue ball hits a rail before hitting the rack.}
@@ -123,7 +123,7 @@
     Some cases of poor behaviour (see \hyperref[\behaviorsection]{Section \ref*{\behaviorsection}}).\endgroup}
 \newcommand{\IntentionalFoul}{An intentional foul is when the player fouls intentionally. E.g., purposefully hitting an opponent's ball away from a pocket. If a foul is deemed intentional, it is an instant loss for the offending player.}
 %
-% Ending the Game
+% === Ending the Game ===
 \newcommand{\IntentionalFoulLoss}[1][8ball]{%
     \begingroup
     \def\intentionalfoulsection{}%
@@ -158,7 +158,7 @@
     }%
     Some other instances of poor behavior can lead to the ending of the game. (see \hyperref[\behaviorsection]{Section \ref*{\behaviorsection}}).\endgroup}
 %
-% Etiquette and Behaviour
+% === Etiquette and Behaviour ===
 \newcommand{\Misleading}{Misleading the opponent. If the player deliberately misleads their opponent by stating that they are on overs/unders/8-ball when they are not, then this is an instant loss for the player.}
 \newcommand{\DistractingWhileSettingUp}{Distracting the opponent while they set up their shot. The opponent may ask you to stop; continuing may result in a foul, giving the opponent an extra shot on this turn.\standardspace Examples include but are not limited to: Standing in their eye line, talking, standing behind them, etc.}
 \newcommand{\DistractingWhileStriking}{Distracting the opponent as they strike the cue ball. If this was intentional or the opponent believed that this affected their shot, they can call foul and claim an extra shot on this turn. If the distraction was accidental or of little consequence, play may resume as normal. This call is up to the player taking the shot.}
