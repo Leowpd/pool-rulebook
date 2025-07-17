@@ -5,13 +5,11 @@
 \usepackage{everypage}
 \usepackage{graphicx}
 \usepackage{xcolor}
-\usepackage{lipsum}
-\usepackage{linguex}
 \usepackage{glossaries}
 \usepackage{array}
 \usepackage{nopageno}
 \usepackage{hyperref}
-\usepackage{fouriernc} % Use the New Century Schoolbook font
+\usepackage{fouriernc}  % Use the New Century Schoolbook font
 \usepackage{xparse}
 \usepackage{import}
 \usepackage{chngcntr}
@@ -21,14 +19,9 @@
 
 
 
-\counterwithin{ExNo}{section}
-\renewcommand{\ExLBr}{\bfseries}
-\renewcommand{\ExRBr}{}
-\renewcommand{\Exarabic}{\thesection.\arabic} 
-
-\newcommand{\fixedlabel}[1]{\textbf{\makebox[3.5em][l]{#1}}}
-\newcommand{\itemspace}{\vspace{1.2mm}\\}
-
+% ================================================================== %
+% ---------------- Sections, Rule Items, & Spacing ----------------- %
+% ================================================================== %
 
 
 % === Rule Counters ===
@@ -38,6 +31,8 @@
 \newcounter{subruleitem}[ruleitem]
 \renewcommand{\thesubruleitem}{\thesection.\arabic{ruleitem}.\arabic{subruleitem}}
 
+
+% === Rule Lengths ===
 \newlength{\ruleindent}
 \setlength{\ruleindent}{10mm}              % indent of rule items
 
@@ -45,17 +40,16 @@
 \setlength{\subruleindent}{12mm}           % indent of subrule items
 
 \newlength{\subsubrulebulletindent}
-\setlength{\subsubrulebulletindent}{5.5mm}   % indent of subsubrule items (relative to the text of the rule items)
+\setlength{\subsubrulebulletindent}{5.5mm} % indent of subsubrule items (relative to the text of the rule items)
 
 \newlength{\subsubruletextindent}
-\setlength{\subsubruletextindent}{3.5mm}     % indent of subsubrule items (relative to the bullet point)
+\setlength{\subsubruletextindent}{3.5mm}   % indent of subsubrule items (relative to the bullet point)
 
 \newlength{\rulegap}
 \setlength{\rulegap}{2mm}                  % gap between rules
 
 \newlength{\subrulegap}
 \setlength{\subrulegap}{1.2mm}             % gap between subrules
-
 
 
 % === Rule item ===
@@ -72,6 +66,7 @@
   \noindent\makebox[\ruleindent][l]{\textbf{\theruleitem}}%
 }%
 
+
 % === Subrule item ===
 % Entire block (number and text) indented to align with rule
 \newcommand{\subruleitem}{%
@@ -84,6 +79,8 @@
 }
 
 
+% === subsubrule item ===
+% tertiary section, each subsubrule is a bullet point indented from the higher subrule
 \newcommand{\subsubruleitem}{%
   \par\vspace{-\parskip}%
   \noindent
@@ -98,11 +95,7 @@
 }
 
 
-
-
-
-
-
+% === Controlling section title indentation to line up with rule items ===
 \titleformat{\section}
   {\normalfont\Large\bfseries}
   {\makebox[\ruleindent][l]{\thesection}} % <- fixed-width box for section number
@@ -110,20 +103,31 @@
   {}
 %
 
+% === Standard space used instead of paragraphs, same vertical space as \subrulegap ===
+\newcommand{\standardspace}{\vspace{\subrulegap}\\}
 
 
 
+% ================================================================== %
+% ---------------------------- Graphics ---------------------------- %
+% ================================================================== %
 
+
+% === Helper definitions and macro for correct placement of page frames ===
 \def\PageTopMargin{2cm}
 \def\PageLeftMargin{2cm}
 \newcommand\atxy[3]{%
  \AddThispageHook{\smash{\hspace*{\dimexpr-\PageLeftMargin-\hoffset+#1\relax}%
   \raisebox{\dimexpr\PageTopMargin+\voffset-#2\relax}{#3}}}}
+%
 
+% === Places the page frame ===
 \newcommand{\placeframe}[1]{\atxy{-0.5cm}{29.1cm}{\includegraphics[scale=0.3353]{images/frame#1}}}
+% e.g. to place the frame for page 4, do \placeframe{4}. Only works up until 15. If in future we need more than 15 pages maybe add the solid coloured snooker balls.
 
+
+% === Title for e.g. "8-Ball Pool", "Appendices", etc ===
 \newsavebox{\titlebox}
-
 \newcommand{\fancytitle}[2][]{%
   \twocolumn[%
     {%
@@ -162,7 +166,12 @@
 
 
 
-\definecolor{titlegreen}{RGB}{12, 86, 65}
+% ================================================================== %
+% ------------------- Document Setup & Miscellany ------------------ %
+% ================================================================== %
+
+
+\definecolor{titlegreen}{RGB}{12, 86, 65}        % colour used for titles
 \definecolor{pooltablegreen}{RGB}{98, 166, 111}  % same colour as the pool table diagram
 
 \title{Pilaar Duncan Pool House Rules}
@@ -174,4 +183,3 @@
     pdfauthor={Leo Duncan},
     allbordercolors={pooltablegreen}
 }
-
