@@ -17,10 +17,7 @@
 \usepackage{chngcntr}
 \usepackage{titlesec}
 \usepackage{etoolbox}
-
-
-
-
+\usepackage{calc}
 
 
 
@@ -30,8 +27,7 @@
 \renewcommand{\Exarabic}{\thesection.\arabic} 
 
 \newcommand{\fixedlabel}[1]{\textbf{\makebox[3.5em][l]{#1}}}
-
-
+\newcommand{\itemspace}{\vspace{1.2mm}\\}
 
 
 
@@ -42,10 +38,25 @@
 \newcounter{subruleitem}[ruleitem]
 \renewcommand{\thesubruleitem}{\thesection.\arabic{ruleitem}.\arabic{subruleitem}}
 
-\newcommand{\ruleindent}{3em}               % indent of rule items
-\newcommand{\subruleindent}{3.5em}          % indent of subrule items
-\newcommand{\rulegap}{0.5\baselineskip}     % gap between rules
-\newcommand{\subrulegap}{0.3\baselineskip}  % gap between subrules
+\newlength{\ruleindent}
+\setlength{\ruleindent}{10mm}              % indent of rule items
+
+\newlength{\subruleindent}
+\setlength{\subruleindent}{12mm}           % indent of subrule items
+
+\newlength{\subsubrulebulletindent}
+\setlength{\subsubrulebulletindent}{5.5mm}   % indent of subsubrule items (relative to the text of the rule items)
+
+\newlength{\subsubruletextindent}
+\setlength{\subsubruletextindent}{3.5mm}     % indent of subsubrule items (relative to the bullet point)
+
+\newlength{\rulegap}
+\setlength{\rulegap}{2mm}                  % gap between rules
+
+\newlength{\subrulegap}
+\setlength{\subrulegap}{1.2mm}             % gap between subrules
+
+
 
 % === Rule item ===
 \newcommand{\ruleitem}{%
@@ -59,7 +70,7 @@
   \hangindent=\ruleindent
   \hangafter=1
   \noindent\makebox[\ruleindent][l]{\textbf{\theruleitem}}%
-}
+}%
 
 % === Subrule item ===
 % Entire block (number and text) indented to align with rule
@@ -72,10 +83,32 @@
   \makebox[\subruleindent][l]{\textbf{\thesubruleitem}}%
 }
 
-\newcommand{\itemspace}{\vspace{1.2mm}\\}
+
+\newcommand{\subsubruleitem}{%
+  \par\vspace{-\parskip}%
+  \noindent
+  \hspace*{\dimexpr\ruleindent+\subsubrulebulletindent\relax}%
+  \hangindent=\dimexpr
+    \ruleindent +
+    \subsubrulebulletindent +
+    \subsubruletextindent%
+  \relax
+  \hangafter=1
+  \makebox[\subsubruletextindent][l]{$\bullet$}%
+}
 
 
 
+
+
+
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\makebox[\ruleindent][l]{\thesection}} % <- fixed-width box for section number
+  {0pt}
+  {}
+%
 
 
 
@@ -126,6 +159,7 @@
   ]%
   \setcounter{section}{-1}
 }
+
 
 
 \definecolor{titlegreen}{RGB}{12, 86, 65}
