@@ -64,6 +64,8 @@
 
 \newlength{\subsubrulebulletindent}
 \setlength{\subsubrulebulletindent}{\subruleindent-\subsubruletextindent+0.25mm} % indent of subsubrule items (relative to the text of the rule items)
+% Even though it perfectly lines up with first-line subrule indentation without the +0.25mm, it for whatever reason creates the illusion that it is slightly more leftward.
+% With the +0.25mm it visually looks much more aligned.
 
 \newlength{\rulegap}
 \setlength{\rulegap}{2mm}                  % gap between rules
