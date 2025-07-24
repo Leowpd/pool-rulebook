@@ -3,27 +3,29 @@
 \usepackage{xstring}
 \usepackage{ifthen}
 
-% === Racking ===
-\newcommand{\RackingUp}[1][8ball]{%
+\newcommand{\errormessage}[1]{Invalid argument '#1', use 8ball, 9ball, or snooker only}
+
+% === Racking === %
+\newcommand{\RackingUp}[1]{%
     \begingroup
     \def\numballs{}%
     \def\rackshape{}%
     \IfStrEq{#1}{8ball}{\def\numballs{15}\def\rackshape{triangle}}{%
         \IfStrEq{#1}{9ball}{\def\numballs{9}\def\rackshape{diamond}}{%
             \IfStrEq{#1}{snooker}{\def\numballs{[PLACEHOLDER]}}{%
-                \PackageError{RackingUp}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{RackingUp}{\errormessage{#1}}{}%
             }%
         }%
     }%
     Racking up the balls involves setting all \numballs\ balls up in the standard \rackshape\ formation for the opponent to break. The opponent is encouraged to make sure the rack is tight.\endgroup}
 \newcommand{\DetermineWhoRacks}{Determining Who Racks: The general rule is “challenger racks,” i.e., the person who challenged their opponent racks the balls. For example, if a player says, “Do you want a game?” they are the challenger, and thus they rack the balls. This rule also extends to after each match. If a rematch is desired, the loser of the previous game is the challenger, and thus, they rack the balls.}
-\newcommand{\TableDiagram}[1][8ball]{%
+\newcommand{\TableDiagram}[1]{%
     \begingroup
     \def\tablediagram{}%
     \IfStrEq{#1}{8ball}{\def\tablediagram{8ball_table_diagram.png}}{%
         \IfStrEq{#1}{9ball}{\def\tablediagram{9ball_table_diagram.png}}{%
             \IfStrEq{#1}{snooker}{\def\tablediagram{snooker_table_diagram.png}}{%
-                \PackageError{RackInspection}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{TableDiagram}{\errormessage{#1}}{}%
             }%
         }%
     }%
@@ -35,51 +37,51 @@
         \label{#1:table_diagram}
     \end{figure}\endgroup}
 \newcommand{\TightlyPacked}{The player racking needs to ensure that all the balls are tightly packed with no gaps.}
-\newcommand{\RackPlacement}[1][8ball]{%
+\newcommand{\RackPlacement}[1]{%
     \begingroup
     \def\rackshape{}%
     \def\frontball{}%
     \IfStrEq{#1}{8ball}{\def\rackshape{triangle}\def\frontball{front-most ball}}{%
         \IfStrEq{#1}{9ball}{\def\rackshape{diamond}\def\frontball{1-ball}}{%
             \IfStrEq{#1}{snooker}{\def\rackshape{triangle}\def\frontball{front-most ball}}{%
-                \PackageError{RackPlacement}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{RackPlacement}{\errormessage{#1}}{}%
             }%
         }%
     }%
     The \rackshape\ points towards the front of the table (where the opponent breaks from), with the \frontball\ centred on top of the foot spot.\endgroup}
-\newcommand{\RackingTool}[1][8ball]{%
+\newcommand{\RackingTool}[1]{%
     \begingroup
     \def\rackshape{}%
     \IfStrEq{#1}{8ball}{\def\rackshape{triangle}}{%
         \IfStrEq{#1}{9ball}{\def\rackshape{triangle or diamond}}{%
             \IfStrEq{#1}{snooker}{\def\rackshape{triangle}}{%
-                \PackageError{RackingTool}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{RackingTool}{\errormessage{#1}}{}%
             }%
         }%
     }%
     If a \rackshape\ racking tool is used, this is removed once the balls are in place. If the balls move when the \rackshape\ is removed, it should be placed back on, squishing the balls back together.\endgroup}
-\newcommand{\RackInspection}[1][8ball]{%
+\newcommand{\RackInspection}[1]{%
     \begingroup
     \def\balls{}%
     \IfStrEq{#1}{8ball}{\def\balls{black/8-ball}}{%
         \IfStrEq{#1}{9ball}{\def\balls{1-ball and 9-ball}}{%
             \IfStrEq{#1}{snooker}{\def\balls{[PLACEHOLDER]}}{%
-                \PackageError{RackInspection}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{RackInspection}{\errormessage{#1}}{}%
             }%
         }%
     }%
     The opponent breaking may inspect the rack for gaps and the position of the \balls, but may not complain about the pattern of the coloured balls.\endgroup}
 %
-% === Breaking ===
+% === Breaking === %
 \newcommand{\CueBallPlacement}{The player breaking places the cue ball in the D.}  % If playing on a table without a D, the cue ball should be placed behind the head string.  % note that including this also means that a rule needs to be added for the case when the cue ball is supposed to be behind the headstring (and also is it a common rule that in this case the player may only shoot forwards??). As we never play this rule it seems like it doesn't fit adding it to the family ruleset.
-\newcommand{\CueBallMissOffBreak}[1][8ball]{%
+\newcommand{\CueBallMissOffBreak}[1]{%
     \begingroup
     \def\specialmove{}%
     \def\bracket{}%
     \IfStrEq{#1}{8ball}{\def\specialmove{Call the Break}\def\bracket{(including another chance to Call the Break; see \ruleref{8ball:callingthebreak})}}{%
         \IfStrEq{#1}{9ball}{\def\specialmove{Push Out}\def\bracket{(and may Push Out afterwards; see \ruleref{9ball:pushout})}}{%
             \IfStrEq{#1}{snooker}{\def\specialmove{[PLACEHOLDER]}\def\bracket{[PLACEHOLDER]}}{%
-                \PackageError{CueBallMissOffBreak}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{CueBallMissOffBreak}{\errormessage{#1}}{}%
             }%
         }%
     }%
@@ -87,27 +89,28 @@
 \newcommand{\CueBallRailOffBreak}{If the cue ball hits a rail before hitting the rack, this is a foul.}
 \newcommand{\CueBallSinkOffBreak}{If the cue ball hits the rack and ends up sinking, this is a foul.}
 %
-% === General Play ===
-\newcommand{\FootOnGround}{The player must strike the cue ball with at least one foot touching the floor. “Tippy toes” are permissible.}
-\newcommand{\AlternateTurns}[1][8ball]{%
+% === General Play === %
+\newcommand{\FootOnGround}{The player should strike the cue ball with at least one foot touching the floor. “Tippy toes” are permissible.}
+\newcommand{\AlternateTurns}[1]{%
     \begingroup
     \def\endsection{}%
     \IfStrEq{#1}{8ball}{\def\endsection{8ball:ending}}{%
         \IfStrEq{#1}{9ball}{\def\endsection{9ball:ending}}{%
             \IfStrEq{#1}{snooker}{\def\endsection{[PLACEHOLDER]}}{%
-                \PackageError{AlternateTurns}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{AlternateTurns}{\errormessage{#1}}{}%
             }%
         }%
     }%
     The players alternate turns until the game is ended. See \ruleref{\endsection} for the ending of the game.\endgroup}
-% === Fouling ===
-\newcommand{\FoulsDontStack}[1][8ball]{%
+%
+% === Fouling === %
+\newcommand{\FoulsDontStack}[1]{%
     \begingroup
     \def\foulconsequence{}%
     \IfStrEq{#1}{8ball}{\def\foulconsequence{one extra shot}}{%
         \IfStrEq{#1}{9ball}{\def\foulconsequence{one shot with ball-in-hand}}{%
             \IfStrEq{#1}{snooker}{\def\foulconsequence{[PLACEHOLDER]}}{%
-                \PackageError{RackInspection}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{FoulsDontStack}{\errormessage{#1}}{}%
             }%
         }%
     }%
@@ -118,13 +121,13 @@
 \newcommand{\CueBallRail}{During the break the cue ball hits a rail before hitting the rack.}
 \newcommand{\CueBallPreemptive}{The player strikes the cue ball while any ball on the table is still moving.}
 \newcommand{\PushShot}{The player performs a push shot. This is when the cue ball is touching another ball, and striking the cue ball also moves the touching ball.}
-\newcommand{\ObjectBallTouch}[1][8ball]{%
+\newcommand{\ObjectBallTouch}[1]{%
     \begingroup
     \def\ballinhand{}%
     \IfStrEq{#1}{8ball}{\def\ballinhand{}}{%
         \IfStrEq{#1}{9ball}{\def\ballinhand{ (except the cue ball during ball-in-hand)}}{%
             \IfStrEq{#1}{snooker}{\def\ballinhand{[PLACEHOLDER]}}{%
-                \PackageError{RackInspection}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{ObjectBallTouch}{\errormessage{#1}}{}%
             }%
         }%
     }%
@@ -132,67 +135,110 @@
 \newcommand{\BallOffTable}{Any ball ends up off the table during the player's turn.}
 \newcommand{\JumpShot}{The player performs an intentional jump shot.}
 \newcommand{\TableMovement}{The player bumps the table, causing significant movement of the balls. The players' best judgment is used to determine if any movement of the balls is “significant”.}
-\newcommand{\PoorBehaviour}[1][8ball]{%
+\newcommand{\PoorBehaviour}[1]{%
     \begingroup
     \def\behaviorsection{}%
     \IfStrEq{#1}{8ball}{\def\behaviorsection{8ball:etiquette}}{%
         \IfStrEq{#1}{9ball}{\def\behaviorsection{9ball:etiquette}}{%
             \IfStrEq{#1}{snooker}{\def\behaviorsection{[PLACEHOLDER]}}{%
-                \PackageError{PoorBehaviour}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{PoorBehaviour}{\errormessage{#1}}{}%
             }%
         }%
     }%
     Some cases of poor behaviour (see \ruleref{\behaviorsection}).\endgroup}
-\newcommand{\IntentionalFoul}[1][8ball]{%
+\newcommand{\IntentionalFoul}[1]{%
     \begingroup
     \def\examplefoul{}%
     \IfStrEq{#1}{8ball}{\def\examplefoul{purposefully hitting an opponent's ball away from a pocket}}{%
         \IfStrEq{#1}{9ball}{\def\examplefoul{purposefully hitting an incorrect ball whose placement may have been advantageous to the opponent}}{%
             \IfStrEq{#1}{snooker}{\def\examplefoul{[PLACEHOLDER]}}{%
-                \PackageError{RackInspection}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{IntentionalFoul}{\errormessage{#1}}{}%
             }%
         }%
     }%
     An intentional foul is when the player fouls intentionally. E.g., \examplefoul. If a foul is deemed intentional, it is an instant loss for the offending player.\endgroup}
 %
-% === Ending the Game ===
-\newcommand{\IntentionalFoulLoss}[1][8ball]{%
+% === Snooker === %
+\newcommand{\GenuineAttempt}[1]{%
     \begingroup
     \def\intentionalfoulsection{}%
     \IfStrEq{#1}{8ball}{\def\intentionalfoulsection{8ball:intentionalfoul}}{%
         \IfStrEq{#1}{9ball}{\def\intentionalfoulsection{9ball:intentionalfoul}}{%
             \IfStrEq{#1}{snooker}{\def\intentionalfoulsection{[PLACEHOLDER]}}{%
-                \PackageError{IntentionalFoulLoss}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{GenuineAttempt}{\errormessage{#1}}{}%
+            }%
+        }%
+    }%
+    If the player finds themselves in a snooker position, they must make a genuine attempt to escape the snooker. Failure to make a genuine attempt may be considered an intentional foul (see \ruleref{\intentionalfoulsection}).\endgroup}
+%
+% === Ending the Game === %
+\newcommand{\IntentionalFoulLoss}[1]{%
+    \begingroup
+    \def\intentionalfoulsection{}%
+    \IfStrEq{#1}{8ball}{\def\intentionalfoulsection{8ball:intentionalfoul}}{%
+        \IfStrEq{#1}{9ball}{\def\intentionalfoulsection{9ball:intentionalfoul}}{%
+            \IfStrEq{#1}{snooker}{\def\intentionalfoulsection{[PLACEHOLDER]}}{%
+                \PackageError{IntentionalFoulLoss}{\errormessage{#1}}{}%
             }%
         }%
     }%
     An intentional foul, as detailed in \ruleref{\intentionalfoulsection}, results in an instant loss for the offending player.\endgroup}
-\newcommand{\MisleadingOpponentLoss}[1][8ball]{%
+\newcommand{\MisleadingOpponentLoss}[1]{%
     \begingroup
     \def\misleadingsection{}%
     \IfStrEq{#1}{8ball}{\def\misleadingsection{8ball:misleading}}{%
         \IfStrEq{#1}{9ball}{\def\misleadingsection{9ball:misleading}}{%
             \IfStrEq{#1}{snooker}{\def\misleadingsection{[PLACEHOLDER]}}{%
-                \PackageError{MisleadingOpponentLoss}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{MisleadingOpponentLoss}{\errormessage{#1}}{}%
             }%
         }%
     }%
     Misleading the opponent, as detailed in \ruleref{\misleadingsection}, leads to an instant loss for the offending player.\endgroup}
-\newcommand{\PoorBehaviorLoss}[1][8ball]{%
+\newcommand{\PoorBehaviorLoss}[1]{%
     \begingroup
     \def\behaviorsection{}%
     \IfStrEq{#1}{8ball}{\def\behaviorsection{8ball:etiquette}}{%
         \IfStrEq{#1}{9ball}{\def\behaviorsection{9ball:etiquette}}{%
             \IfStrEq{#1}{snooker}{\def\behaviorsection{[PLACEHOLDER]}}{%
-                \PackageError{PoorBehaviorLoss}{Invalid argument `#1'. Use 8ball, 9ball, or snooker only.}{}%
+                \PackageError{PoorBehaviorLoss}{\errormessage{#1}}{}%
             }%
         }%
     }%
     Some other instances of poor behavior can lead to the ending of the game. (see \ruleref{\behaviorsection}).\endgroup}
 %
-% === Etiquette & Behaviour ===
-\newcommand{\Misleading}{Misleading the opponent. If the player deliberately misleads their opponent by stating that they are on overs/unders/8-ball when they are not, then this is an instant loss for the player.}
-\newcommand{\DistractingWhileSettingUp}{Distracting the opponent while they set up their shot. The opponent may ask you to stop; continuing may result in a foul, giving the opponent an extra shot on this turn.\standardspace Examples include but are not limited to: Standing in their eye line, talking, standing behind them, etc.}
-\newcommand{\DistractingWhileStriking}{Distracting the opponent as they strike the cue ball. If this was intentional or the opponent believed that this affected their shot, they can call foul and claim an extra shot on this turn. If the distraction was accidental or of little consequence, play may resume as normal. This call is up to the player taking the shot.}
+% === Etiquette & Behaviour === %
+\newcommand{\Misleading}[1]{%
+    \begingroup
+    \def\misleading{}%
+    \IfStrEq{#1}{8ball}{\def\misleading{stating that they are on overs/unders/8-ball when they are not}}{%
+        \IfStrEq{#1}{9ball}{\def\misleading{claiming the incorrect ball to be the lowest ball on the table}}{%
+            \IfStrEq{#1}{snooker}{\def\misleading{[PLACEHOLDER]}}{%
+                \PackageError{Misleading}{\errormessage{#1}}{}%
+            }%
+        }%
+    }%
+    Misleading the opponent. If the player deliberately misleads their opponent by \misleading, then this is an instant loss for the player.\endgroup}
+\newcommand{\DistractingWhileSettingUp}[1]{%
+    \begingroup
+    \def\foulpenalty{}%
+    \IfStrEq{#1}{8ball}{\def\foulpenalty{an extra shot}}{%
+        \IfStrEq{#1}{9ball}{\def\foulpenalty{ball-in-hand}}{%
+            \IfStrEq{#1}{snooker}{\def\foulpenalty{[PLACEHOLDER]}}{%
+                \PackageError{DistractingWhileSettingUp}{\errormessage{#1}}{}%
+            }%
+        }%
+    }%
+    Distracting the opponent while they set up their shot. The opponent may ask you to stop; continuing may result in a foul, giving the opponent \foulpenalty\ for this turn.\standardspace Examples include but are not limited to: Standing in their eye line, talking, standing behind them, etc.\endgroup}
+\newcommand{\DistractingWhileStriking}[1]{%
+    \begingroup
+    \def\foulpenalty{}%
+    \IfStrEq{#1}{8ball}{\def\foulpenalty{an extra shot}}{%
+        \IfStrEq{#1}{9ball}{\def\foulpenalty{ball-in-hand}}{%
+            \IfStrEq{#1}{snooker}{\def\foulpenalty{[PLACEHOLDER]}}{%
+                \PackageError{DistractingWhileStriking}{\errormessage{#1}}{}%
+            }%
+        }%
+    }%
+    Distracting the opponent as they strike the cue ball. If this was intentional or the opponent believed that this affected their shot, they can call foul and claim \foulpenalty\ for this turn. If the distraction was accidental or of little consequence, play may resume as normal. This call is up to the player taking the shot.\endgroup}
 \newcommand{\Sportsmanship}{Players should always approach the game with good sportsmanship and humour in mind. If this deteriorates then it is best advised to call the game over.}
 %

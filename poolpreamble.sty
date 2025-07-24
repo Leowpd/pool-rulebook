@@ -16,32 +16,13 @@
 \usepackage{titlesec}
 \usepackage{etoolbox}
 \usepackage{calc}
+\usepackage{adjustbox}
 
 
 
 % ================================================================== %
 % ---------------- Sections, Rule Items, & Spacing ----------------- %
 % ================================================================== %
-
-
-% === Ensures the same label can't be used twice, creating hidden problems ===
-\makeatletter
-\newcommand{\uniquelabel}[1]{%
-  \@ifundefined{UL@#1}{%
-    \expandafter\gdef\csname UL@#1\endcsname{}%
-    \label{#1}%
-  }{%
-    \PackageError{uniquelabel}{Duplicate label `#1'}{%
-      You tried to use the label `#1' more than once.\MessageBreak
-      Labels must be unique to avoid incorrect references.%
-    }%
-  }%
-}
-\makeatother
-
-
-% === Simplier hyperref ===
-\newcommand{\ruleref}[1]{\hyperref[#1]{Section \ref*{#1}}}
 
 
 % === Rule Counters ===
@@ -77,11 +58,46 @@
 \setlength{\subsubrulegap}{0.8mm}          % gap between subsubrules
 
 
+% === Ensures the same label can't be used twice, creating hidden problems ===
+\makeatletter
+\newcommand{\uniquelabel}[1]{%
+  \@ifundefined{UL@#1}{%
+    \expandafter\gdef\csname UL@#1\endcsname{}%
+    \label{#1}%
+  }{%
+    \PackageError{uniquelabel}{Duplicate label `#1'}{%
+      You tried to use the label `#1' more than once.\MessageBreak
+      Labels must be unique to avoid incorrect references.%
+    }%
+  }%
+}
+\makeatother
+
+
+% === Simplier hyperref ===
+\newcommand{\ruleref}[1]{\hyperref[#1]{Section \ref*{#1}}}
+
+
+% === Controlling section title indentation to line up with rule items ===
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\makebox[\ruleindent][l]{\thesection}}
+  {0pt}
+  {}
+%
+
+
+% === Modified \section ===
+\newcommand{\RuleSection}[2]{%
+  \section[\thesection]{\texorpdfstring{\protect\phantomsection\protect\uniquelabel{#2}\protect\mbox{}#1}{#1}}%
+}
+
+
 % === Rule item ===
 \NewDocumentCommand{\ruleitem}{o}{%
   \par % <-- ensures we're in vertical mode
   \refstepcounter{ruleitem}%
-  \IfValueT{#1}{\uniquelabel{#1}}%
+  \IfValueT{#1}{\phantomsection\uniquelabel{#1}}% label!!!
   \setcounter{subruleitem}{0}%
   \ifnum\value{ruleitem}=1
     % No gap before the first rule
@@ -98,7 +114,7 @@
   \par % Ensure we're in vertical mode so label anchor is placed correctly
   \vspace{\subrulegap}%
   \refstepcounter{subruleitem}%
-  \IfValueT{#1}{\uniquelabel{#1}}%
+  \IfValueT{#1}{\phantomsection\uniquelabel{#1}}% label!!!
   \noindent\hspace*{\ruleindent}% 
   \hangindent=\ruleindent
   \hangafter=1
@@ -109,7 +125,7 @@
 % tertiary section, each subsubrule is a bullet point indented from the higher subrule
 \NewDocumentCommand{\subsubruleitem}{o}{%
   \par\vspace{-\parskip+\subsubrulegap}%
-  \IfValueT{#1}{\uniquelabel{#1}}%% references current subrule counter
+  \IfValueT{#1}{\phantomsection\uniquelabel{#1}}%% references current subrule counter label!!!
   \noindent
   \hspace*{\dimexpr\ruleindent+\subsubrulebulletindent\relax}%
   \hangindent=\dimexpr
@@ -122,13 +138,6 @@
 }
 
 
-% === Controlling section title indentation to line up with rule items ===
-\titleformat{\section}
-  {\normalfont\Large\bfseries}
-  {\makebox[\ruleindent][l]{\thesection}} % <- fixed-width box for section number
-  {0pt}
-  {}
-%
 
 % === Standard space used instead of paragraphs, same vertical space as \subrulegap ===
 \NewDocumentCommand{\standardspace}{O{small}}{%

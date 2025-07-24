@@ -1,25 +1,25 @@
 \fancytitle[images/9ball.png]{9-Ball Pool}
 
-\section{Object of the Game} \label{9ball:description}
+\RuleSection{Object of the Game}{9ball:description} %\label{9ball:description}
 
 % define "object balls" somewhere
 
-\section{Racking} \label{9ball:racking}
+\RuleSection{Racking}{9ball:racking} %\label{9ball:racking}
 
-\ruleitem \RackingUp[9ball]%
+\ruleitem \RackingUp{9ball}%
 \ruleitem \DetermineWhoRacks%
-\ruleitem[9ball:rackpos]\TableDiagram[9ball]%
+\ruleitem[9ball:rackpos]\TableDiagram{9ball}%
 \subruleitem The nine numbered balls are racked in a triangle with the 1-ball placed in the front and the 9-ball in the centre (i.e., middle of the third row). There is no required pattern for balls 2-8.%
 \subruleitem \TightlyPacked%
-\subruleitem \RackPlacement[9ball]%
-\subruleitem \RackingTool[9ball]%
-\subruleitem \RackInspection[9ball]%
+\subruleitem \RackPlacement{9ball}%
+\subruleitem \RackingTool{9ball}%
+\subruleitem \RackInspection{9ball}%
 
-\section{Breaking \& Push Out} \label{9ball:breaking}
+\RuleSection{Breaking \& Push Out}{9ball:breaking} %\label{9ball:breaking}
 
 \ruleitem The player breaking places the cue ball in the D.%
 \ruleitem The cue ball must first strike the 1-ball. Failure to do this is a foul. For fouls, see \ruleref{9ball:fouling}.%
-\ruleitem \CueBallMissOffBreak[9ball]%
+\ruleitem \CueBallMissOffBreak{9ball}%
 \ruleitem \CueBallRailOffBreak%
 \ruleitem \CueBallSinkOffBreak%
 \ruleitem If any balls are knocked off the table during the break, this is a foul. See [INSERT HYPERREF] for returning the balls to the table.%
@@ -38,7 +38,7 @@
 \subruleitem Any foul results in ball-in-hand for the opponent as normal.%
 \subruleitem Once the Push Out has been played the opponent may choose to either shoot from where the cue ball rests or to pass the turn back to the player.%
 
-\section{General Play} \label{9ball:general}
+\RuleSection{General Play}{9ball:general} %\label{9ball:general}
 
 \ruleitem A player's turn consists of them striking the cue ball into the lowest numbered ball on the table, generally with the aim of:%
 \subsubruleitem Sinking the 9-ball;%
@@ -49,10 +49,11 @@
 \ruleitem If the player fouls, their turn ends and the opponent is awarded ball-in-hand (see \ruleref{9ball:fouling} for fouls and \ruleref{9ball:ballinhand} for ball-in-hand).%
 \ruleitem If any object ball other than the 9-ball sinks, the player may continue their turn (provided no foul occured, otherwise regular foul rules apply).%
 \ruleitem If the player sinks the 9-ball but also fouls on their shot, see [INSERT HYPERREF].%
-\ruleitem \AlternateTurns[9ball]%
+\ruleitem \GenuineAttempt{9ball}%
+\ruleitem \AlternateTurns{9ball}%
 % ADD SECTION ON SNOOKERING
 
-\section{Fouling} \label{9ball:fouling}
+\RuleSection{Fouling}{9ball:fouling} %\label{9ball:fouling}
 
 \ruleitem If a foul occurs, the player's turn ends and the opponent is awarded ball-in-hand (see \ruleref{9ball:ballinhand}).%
 \ruleitem[9ball:ballinhand]Ball-in-hand:
@@ -60,7 +61,7 @@
 \subruleitem Once the cue ball is placed, the player may continue to adjust it until they are ready to take their shot.%
 \subruleitem All balls must be completely at rest before the cue ball is permitted to be picked up. Touching the cue ball preemptively is a foul.%
 \subruleitem The player must confirm they have been awarded ball-in-hand before picking up the cue ball. Touching the cue ball if the opponent did not foul is obviously a foul.%
-\ruleitem \FoulsDontStack[9ball]%
+\ruleitem \FoulsDontStack{9ball}%
 \ruleitem \FoulCircumstances%
 \subruleitem The player fails to hit the cue ball into lowest numbered ball first.%
 \subruleitem During a Push Out, the cue ball hits any ball other than the 1-ball first (note that the cue ball may hit no ball).
@@ -70,7 +71,7 @@
 \subruleitem \CueBallSink%
 \subruleitem \CueBallPreemptive%
 \subruleitem The player picks up the cue ball for ball-in-hand before all balls are at rest.%
-\subruleitem \ObjectBallTouch[9ball]%
+\subruleitem \ObjectBallTouch{9ball}%
 \subruleitem \PushShot%
 \subruleitem \BallOffTable%
 \subsubruleitem If it is the cue ball then the opponent is awarded ball-in-hand.%
@@ -78,19 +79,19 @@
 \subsubruleitem If it is the 9-ball, the players attempt to place it as close to the foot spot as possible (see \ruleref{9ball:rackpos} for the position of the foot spot).%
 \subruleitem \JumpShot%
 \subruleitem \TableMovement%
-\subruleitem \PoorBehaviour[9ball]%
-\ruleitem[9ball:intentionalfoul]\IntentionalFoul[9ball]%
+\subruleitem \PoorBehaviour{9ball}%
+\ruleitem[9ball:intentionalfoul]\IntentionalFoul{9ball}%
 
-\section{Ending the Game} \label{9ball:ending}
+\RuleSection{Ending the Game}{9ball:ending} %\label{9ball:ending}
 
 \ruleitem If the player legally (without fouling) sinks the 9-ball, the game ends and the player wins.%
-\ruleitem \IntentionalFoulLoss[9ball]%
-\ruleitem \MisleadingOpponentLoss[9ball]%
-\ruleitem \PoorBehaviorLoss[9ball]%
+\ruleitem \IntentionalFoulLoss{9ball}%
+\ruleitem \MisleadingOpponentLoss{9ball}%
+\ruleitem \PoorBehaviorLoss{9ball}%
 
-\section{Etiquette \& Behaviour} \label{9ball:etiquette}
+\RuleSection{Etiquette \& Behaviour}{9ball:etiquette} %\label{9ball:etiquette}
 
-\ruleitem[9ball:misleading]\Misleading% % THIS NEEDS TO BE MODIFIED FOR 9-BALL
-\ruleitem \DistractingWhileSettingUp%  
-\ruleitem \DistractingWhileStriking%    % THIS NEEDS TO BE MODIFIED FOR 9-BALL
+\ruleitem[9ball:misleading]\Misleading{9ball}%
+\ruleitem \DistractingWhileSettingUp{9ball}%
+\ruleitem \DistractingWhileStriking{9ball}%
 \ruleitem \Sportsmanship%
