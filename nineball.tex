@@ -1,10 +1,10 @@
 \fancytitle[images/9ball.png]{9-Ball Pool}
 
-\RuleSection{Object of the Game}{9ball:description}
+\rulesection{Object of the Game}{9ball:description}
 
 \ruleitem 9-Ball Pool is played between two players using a cue ball and nine object balls. At any point in the game, the lowest-numbered ball on the table must be struck first. A player wins by legally sinking the 9-ball. The players take turns attempting to use the lowest-numbered ball to sink the 9-ball, or to disadvantage their opponent.%
 
-\RuleSection{Racking}{9ball:racking}
+\rulesection{Racking}{9ball:racking}
 
 \ruleitem \RackingUp{9ball}%
 \ruleitem \DetermineWhoRacks%
@@ -15,66 +15,65 @@
 \subruleitem \RackingTool{9ball}%
 \subruleitem \RackInspection{9ball}%
 
-\RuleSection{Breaking \& Push Out}{9ball:breaking}
+\rulesection{Breaking \& Push Out}{9ball:breaking}
 
 \ruleitem The player breaking places the cue ball in the D.%
 \ruleitem The cue ball must first strike the 1-ball. Failure to do this is a foul. For fouls, see \ruleref{9ball:fouling}.%
 \ruleitem \CueBallMissOffBreak{9ball}%
 \ruleitem \CueBallRailOffBreak%
 \ruleitem \CueBallSinkOffBreak%
-\ruleitem If any balls are knocked off the table during the break, this is a foul. See [INSERT HYPERREF] for returning the balls to the table.%
+\ruleitem If any balls are knocked off the table during the break, this is a foul. Balls other than the 9-ball should not be respotted. See \ruleref{9ball:ballofftable} for returning the 9-ball to the table.%
 \ruleitem If the player pockets one or more object balls:%
 \subruleitem If the player also fouls then the player's turn ends and regular foul rules apply (\ruleref{9ball:fouling}).%
 \subruleitem Otherwise the player may continue their turn (provided the 9-ball didn't sink).%
 \subruleitem If the 9-ball sinks then this is an instant win for the player, provided no foul has occured.%
-\subruleitem If the 9-ball sinks but the player fouls, the 9-ball should be returned to the table (see [INSERT HYPERREF] for respotting the 9-ball) and regular foul rules apply.%
-\ruleitem[9ball:pushout]If the player performs a legal break and sinks no object balls, they have the option of playing a Push Out.%
+\subruleitem If the 9-ball sinks but the player fouls, the 9-ball should be returned to the table (see \ruleref{9ball:ballofftable} for respotting the 9-ball) and regular foul rules apply.%
+\ruleitem[9ball:pushout]Pushing Out: If the player performs a legal break and sinks no object balls, they have the option of playing a push out.%
 \subruleitem Here the player may attempt to move the cue ball into a preferred position.%
 \subruleitem The player should state their intention to attempt a push out.%
 \subruleitem The cue ball is not required to hit any ball or rail.%
-\subruleitem If the 9-ball sinks it should be returned to the table [HYPERREF].%
+\subruleitem If the 9-ball sinks it should be returned to the table (see \ruleref{9ball:ballofftable}).%
 \subruleitem If any object ball other than the 9-ball sinks it should not be respotted but the player may not continue their turn.%
 \subruleitem If the cue ball does hit an object ball, it must hit the 1-ball first. It is a foul otherwise.%
 \subruleitem Any foul results in ball-in-hand for the opponent as normal.%
-\subruleitem Once the Push Out has been played the opponent may choose to either shoot from where the cue ball rests or to pass the turn back to the player.%
+\subruleitem Once the push out has been played, the opponent may choose to either shoot from where the cue ball rests or to pass the turn back to the player.%
 
-\RuleSection{General Play}{9ball:general}
+\rulesection{General Play}{9ball:general}
 
-\ruleitem A player's turn consists of them striking the cue ball into the lowest numbered ball on the table, generally with the aim of:%
+\ruleitem A player's turn consists of them striking the cue ball into the lowest-numbered ball on the table, generally with the aim of:%
 \subsubruleitem Sinking the 9-ball;%
 \subsubruleitem Setting themselves up to sink the 9-ball;%
 \subsubruleitem Snookering the opponent.%
-\ruleitem During each shot, after the cue ball has hit the lowest numbered ball, at least one ball (object ball or cue ball) must hit the rail and/or an object ball must sink into a pocket. Failure to do this is a foul.
+\ruleitem During each shot, after the cue ball has hit the lowest-numbered ball, at least one ball (object ball or cue ball) must hit the rail and/or an object ball must sink into a pocket. Failure to achieve this is a foul.
 \ruleitem \FootOnGround%
 \ruleitem If the player fouls, their turn ends and the opponent is awarded ball-in-hand (see \ruleref{9ball:fouling} for fouls and \ruleref{9ball:ballinhand} for ball-in-hand).%
-\ruleitem If any object ball other than the 9-ball sinks, the player may continue their turn (provided no foul occured, otherwise regular foul rules apply).%
-\ruleitem If the player sinks the 9-ball but also fouls on their shot, see [INSERT HYPERREF].%
+\ruleitem If any object ball other than the 9-ball sinks, the player may continue their turn (provided no foul occured, in which case regular foul rules apply).%
+\ruleitem If the player sinks the 9-ball but also fouls on their shot, the 9-ball should be respotted (see \ruleref{9ball:ballofftable}) and regular foul rules apply.%
 \ruleitem \GenuineAttempt{9ball}%
 \ruleitem \AlternateTurns{9ball}%
-% ADD SECTION ON SNOOKERING
 
-\RuleSection{Fouling}{9ball:fouling}
+\rulesection{Fouling}{9ball:fouling}
 
-\ruleitem If a foul occurs, the player's turn ends and the opponent is awarded ball-in-hand (see \ruleref{9ball:ballinhand}).%
+\ruleitem If a foul occurs, the player's turn ends and the opponent is awarded ball-in-hand (\ruleref{9ball:ballinhand}).%
 \ruleitem[9ball:ballinhand]Ball-in-hand:
-\subruleitem Ball-in-hand allows you to pick up the cue ball and place it anywhere on the table.%
+\subruleitem Ball-in-hand allows the player to pick up the cue ball and place it anywhere on the table.%
 \subruleitem Once the cue ball is placed, the player may continue to adjust it until they are ready to take their shot.%
-\subruleitem All balls must be completely at rest before the cue ball is permitted to be picked up. Touching the cue ball preemptively is a foul.%
+\subruleitem All balls must be completely at rest before the cue ball may be picked up. Touching the cue ball preemptively is a foul.%
 \subruleitem The player must confirm they have been awarded ball-in-hand before picking up the cue ball. Touching the cue ball if the opponent did not foul is obviously a foul.%
 \ruleitem \FoulsDontStack{9ball}%
 \ruleitem \FoulCircumstances%
-\subruleitem The player fails to hit the cue ball into lowest numbered ball first.%
-\subruleitem During a Push Out, the cue ball hits any ball other than the 1-ball first (note that the cue ball may hit no ball).
-\subruleitem After the cue ball has hit the lowest numbered ball, no ball (object ball or cue ball) hits a rail and no object ball sinks (this rule is excepted during a Push Out).%
+\subruleitem The player fails to hit the cue ball into lowest-numbered ball first.%
+\subruleitem During a push out, the cue ball hits any ball other than the 1-ball first (note that the cue ball may hit no ball).
+\subruleitem After the cue ball has hit the lowest-numbered ball, no ball (object or cue) hits a rail, and no object ball sinks (that is, at least one of these must happen for the shot to be legal). (This rule is excepted during a push out).%
 \subsubruleitem If the cue ball or targeted object ball is touching a rail at the beginning of the shot, it is only counted as hitting a rail if it hits a different rail.%
-\subruleitem \CueBallMiss\ (this rule is excepted during a Push Out).%
+\subruleitem \CueBallMiss\ (This rule is excepted during a push out).%
 \subruleitem \CueBallSink%
 \subruleitem \CueBallPreemptive%
 \subruleitem The player picks up the cue ball for ball-in-hand before all balls are at rest.%
 \subruleitem \ObjectBallTouch{9ball}%
 \subruleitem \PushShot%
-\subruleitem \BallOffTable%
-\subsubruleitem If it is the cue ball then the opponent is awarded ball-in-hand.%
+\subruleitem[9ball:ballofftable]\BallOffTable%
+\subsubruleitem If it is the cue ball then it is returned to the table via ball-in-hand.%
 \subsubruleitem If it is an object ball other than the 9-ball, the ball is not returned to the table.%
 \subsubruleitem If it is the 9-ball, the players attempt to place it as close to the foot spot as possible (see \ruleref{9ball:rackpos} for the position of the foot spot).%
 \subruleitem \JumpShot%
@@ -82,14 +81,14 @@
 \subruleitem \PoorBehaviour{9ball}%
 \ruleitem[9ball:intentionalfoul]\IntentionalFoul{9ball}%
 
-\RuleSection{Ending the Game}{9ball:ending}
+\rulesection{Ending the Game}{9ball:ending}
 
 \ruleitem If the player legally (without fouling) sinks the 9-ball, the game ends and the player wins.%
 \ruleitem \IntentionalFoulLoss{9ball}%
 \ruleitem \MisleadingOpponentLoss{9ball}%
 \ruleitem \PoorBehaviorLoss{9ball}%
 
-\RuleSection{Etiquette \& Behaviour}{9ball:etiquette}
+\rulesection{Etiquette \& Behaviour}{9ball:etiquette}
 
 \ruleitem[9ball:misleading]\Misleading{9ball}%
 \ruleitem \DistractingWhileSettingUp{9ball}%

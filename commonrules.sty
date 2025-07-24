@@ -10,15 +10,15 @@
     \begingroup
     \def\numballs{}%
     \def\rackshape{}%
-    \IfStrEq{#1}{8ball}{\def\numballs{15}\def\rackshape{triangle}}{%
-        \IfStrEq{#1}{9ball}{\def\numballs{9}\def\rackshape{diamond}}{%
+    \IfStrEq{#1}{8ball}{\def\numballs{fifteen}\def\rackshape{triangle}}{%
+        \IfStrEq{#1}{9ball}{\def\numballs{nine}\def\rackshape{diamond}}{%
             \IfStrEq{#1}{snooker}{\def\numballs{[PLACEHOLDER]}}{%
                 \PackageError{RackingUp}{\errormessage{#1}}{}%
             }%
         }%
     }%
-    Racking up the balls involves setting all \numballs\ balls up in the standard \rackshape\ formation for the opponent to break. The opponent is encouraged to make sure the rack is tight.\endgroup}
-\newcommand{\DetermineWhoRacks}{Determining Who Racks: The general rule is “challenger racks,” that is, the person who challenged their opponent racks the balls. For example, if a player says, “Do you want a game?” they are the challenger and therefore rack the balls. This rule also extends to after each match. If a rematch is desired, the loser of the previous game is the challenger and racks the balls.}
+    Racking up the balls involves setting all \numballs\ object balls up in the standard \rackshape\ formation for the opponent to break. The opponent is encouraged to make sure the rack is tight.\endgroup}
+\newcommand{\DetermineWhoRacks}{Determining who racks: The general rule is “challenger racks”, that is, the person who challenged their opponent racks the balls. For example, if a player says, “Do you want a game?” they are the challenger and therefore rack the balls. This rule also extends to after each match. If a rematch is desired, the loser of the previous game is the challenger and racks the balls.}
 \newcommand{\TableDiagram}[1]{%
     \begingroup
     \def\tablediagram{}%
@@ -29,7 +29,7 @@
             }%
         }%
     }%
-    Formation and Position of Rack:
+    Table Diagram and Position of Rack:
     \begin{figure}[!h]
         \raggedleft
         \includegraphics[width=0.4315\textwidth]{images/\tablediagram}
@@ -78,8 +78,8 @@
     \begingroup
     \def\specialmove{}%
     \def\bracket{}%
-    \IfStrEq{#1}{8ball}{\def\specialmove{Call the Break}\def\bracket{(including another chance to Call the Break; see \ruleref{8ball:callingthebreak})}}{%
-        \IfStrEq{#1}{9ball}{\def\specialmove{Push Out}\def\bracket{(and may Push Out afterwards; see \ruleref{9ball:pushout})}}{%
+    \IfStrEq{#1}{8ball}{\def\specialmove{call-the-break}\def\bracket{(including another chance to call-the-break; see \ruleref{8ball:callingthebreak})}}{%
+        \IfStrEq{#1}{9ball}{\def\specialmove{push out}\def\bracket{(and may “push out” afterwards; see \ruleref{9ball:pushout})}}{%
             \IfStrEq{#1}{snooker}{\def\specialmove{[PLACEHOLDER]}\def\bracket{[PLACEHOLDER]}}{%
                 \PackageError{CueBallMissOffBreak}{\errormessage{#1}}{}%
             }%
@@ -204,14 +204,14 @@
             }%
         }%
     }%
-    Some other instances of poor behavior can lead to the ending of the game. (see \ruleref{\behaviorsection}).\endgroup}
+    Some other instances of poor behavior may lead to the ending of the game. (see \ruleref{\behaviorsection}).\endgroup}
 %
 % === Etiquette & Behaviour === %
 \newcommand{\Misleading}[1]{%
     \begingroup
     \def\misleading{}%
     \IfStrEq{#1}{8ball}{\def\misleading{stating that they are on overs/unders/8-ball when they are not}}{%
-        \IfStrEq{#1}{9ball}{\def\misleading{claiming the incorrect ball to be the lowest ball on the table}}{%
+        \IfStrEq{#1}{9ball}{\def\misleading{claiming the incorrect ball to be the lowest-numbered ball on the table}}{%
             \IfStrEq{#1}{snooker}{\def\misleading{[PLACEHOLDER]}}{%
                 \PackageError{Misleading}{\errormessage{#1}}{}%
             }%
